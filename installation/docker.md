@@ -84,7 +84,7 @@ docker-compose run --rm directus install --email email@example.com --password d1
 ```
 
 ::: warning
-Make sure to substitue `email@example.com` and `d1r3ctu5` with your preferred email and password.
+Make sure to substitute `email@example.com` and `d1r3ctu5` with your preferred email and password.
 :::
 
 ::: warning HTTPS
