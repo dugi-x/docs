@@ -44,26 +44,6 @@ $items = $tableGateway->getItems($params);
 
 For `params` it can be used any [Query Parameters](https://github.com/directus/docs/blob/master/api/reference.md#query-parameters) supported by the API.
 
-#### Modifying tables
-
-If you want to update a just created item, you can do it as following.
-
-This is especially useful in `:after` `action` hooks where you normally don't have direct access to the databases' payload anymore, but still want to modify a table.
-In this case, we change the model name according to its ID, which wouldn't be possible in the `:before` hook, since we wouldn't know its ID.
-
-```php
-$container = \Directus\Application\Application::getInstance()->getContainer();
-$dbConnection = $container->get('database');
-$tableGateway = new \Zend\Db\TableGateway\TableGateway('products', $dbConnection);
-
-$update_data = array(
-    'id' => $data['id'],
-    'model'  => "Model-" . $data['id'],
-);
-$where = array('id' => $data['id']);
-$tableGateway->update($update_data, $where);
-```
-
 ### Zend DB TableGateway
 
 If you want to create your own custom queries using the Zend DB TableGateway gives you more flexibility, you can either use the TableGateway created by Directus TableGateway factory above, or create a instance of `Zend\Db\TableGateway\TableGateway`.
@@ -81,6 +61,24 @@ while ($result->valid()) {
     $item = $result->current();
     $result->next();
 }
+```
+
+If you want to update a just created item, you can do it as following.
+
+This is especially useful in `:after` `action` hooks where you normally don't have direct access to the databases' payload anymore, but still want to modify a table.
+In this case, we change the model name according to its ID, which wouldn't be possible in the `:before` hook, since we wouldn't know its ID.
+
+```php
+$container = \Directus\Application\Application::getInstance()->getContainer();
+$dbConnection = $container->get('database');
+$tableGateway = new \Zend\Db\TableGateway\TableGateway('products', $dbConnection);
+
+$update_data = array(
+    'id' => $data['id'],
+    'model'  => "Model-" . $data['id'],
+);
+$where = array('id' => $data['id']);
+$tableGateway->update($update_data, $where);
 ```
 
 You can read the [Zend DB 2 Documentation](https://framework.zend.com/manual/2.2/en/modules/zend.db.sql.html) to know more about how to use Zend DB to select data.
