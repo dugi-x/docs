@@ -74,10 +74,10 @@ $dbConnection = $container->get('database');
 $tableGateway = new \Zend\Db\TableGateway\TableGateway('products', $dbConnection);
 
 $data = array(
-    'id' => data['id'],
-    'model'  => "Model-" . data['id'],
+    'id' => $data['id'],
+    'model'  => "Model-" . $data['id'],
 );
-$where = array('id' => data['id']);
+$where = array('id' => $data['id']);
 $tableGateway->update($data, $where);
 ```
 
