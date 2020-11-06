@@ -63,7 +63,7 @@ while ($result->valid()) {
 }
 ```
 
-For instance, if you want to update a just created item, you can do it as following.
+If you want to update a just created item, you can do it as following.
 
 This is especially useful in `:after` `action` hooks where you normally don't have direct access to the databases' payload anymore, but still want to modify a table.
 In this case, we change the model name according to its ID, which wouldn't be possible in the `:before` hook, since we wouldn't know its ID.
@@ -73,12 +73,12 @@ $container = \Directus\Application\Application::getInstance()->getContainer();
 $dbConnection = $container->get('database');
 $tableGateway = new \Zend\Db\TableGateway\TableGateway('products', $dbConnection);
 
-$data = array(
+$update_data = array(
     'id' => $data['id'],
     'model'  => "Model-" . $data['id'],
 );
 $where = array('id' => $data['id']);
-$tableGateway->update($data, $where);
+$tableGateway->update($update_data, $where);
 ```
 
 You can read the [Zend DB 2 Documentation](https://framework.zend.com/manual/2.2/en/modules/zend.db.sql.html) to know more about how to use Zend DB to select data.
