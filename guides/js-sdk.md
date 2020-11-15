@@ -196,7 +196,6 @@ const client = new DirectusSDK({
 });
 
 client.login({
-  url: "https://demo.directus.io",
   email: "admin@example.com",
   password: "password"
 });
