@@ -184,14 +184,21 @@ client.login({
 });
 ```
 
-The login method accepts the `mode` flag that lets you toggle between JWT and Cookies for authentication. 
+The client options accepts the `mode` flag that lets you toggle between JWT and Cookies for authentication. 
 
 ```js
+import DirectusSDK from "@directus/sdk-js";
+
+const client = new DirectusSDK({
+  url: "https://api.directus.cloud/",
+  project: "dcABCdefHIJklm",
+  mode: "cookie"
+});
+
 client.login({
   url: "https://demo.directus.io",
   email: "admin@example.com",
-  password: "password",
-  mode: "cookie"
+  password: "password"
 });
 ```
 
